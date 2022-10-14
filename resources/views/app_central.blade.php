@@ -1,1 +1,4 @@
-<h1>Hello, world! {{$podsumowanie}}</h1>
+@extends('app')
+@section('content')
+<h1>Hello, world! </h1>
+@endsection

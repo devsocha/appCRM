@@ -21,4 +21,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/app',[\App\Http\Controllers\app::class,'start_app'])->name('app');
+Route::get('/podsumowanie',function(){
+    return view('app_central',[
+        'siteNameTittle'=> 'Podsumowanie',
+    ]);
+})->name('app_central');
 require __DIR__.'/auth.php';
