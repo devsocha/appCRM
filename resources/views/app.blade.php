@@ -33,6 +33,9 @@
                 </li>
             </ul>
         </div>
+        <div>
+            <a href="#"><button type="button" class="btn btn-secondary" >Wyloguj</button></a>
+        </div>
     </div>
 </nav>
 @yield('content')
