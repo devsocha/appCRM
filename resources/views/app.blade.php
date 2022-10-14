@@ -22,14 +22,14 @@
                     <a class="nav-link " aria-current="page" href="{{Route('app_central')}}">Statystyki</a>
                 </li>
                 <li class="nav-item">
-{{--                    {{Route('app_projects')}}--}}
-                    <a class="nav-link" href="#">Projekty</a>
+
+                    <a class="nav-link" href="{{Route('app_projects')}}">Projekty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="app_leads">Leady</a>
+                    <a class="nav-link" href="{{Route('app_leads')}}">Leady</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "href="app_contacts">Kontakty</a>
+                    <a class="nav-link "href="{{Route('app_contacts')}}">Kontakty</a>
                 </li>
             </ul>
         </div>

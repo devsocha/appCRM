@@ -26,4 +26,19 @@ Route::get('/podsumowanie',function(){
         'siteNameTittle'=> 'Podsumowanie',
     ]);
 })->name('app_central');
+Route::get('/projekty',function(){
+    return view('app_projects',[
+        'siteNameTittle'=> 'projekty',
+    ]);
+})->name('app_projects');
+Route::get('/leady',function(){
+    return view('app_leads',[
+        'siteNameTittle'=> 'Leady',
+    ]);
+})->name('app_leads');
+Route::get('/kontakty',function(){
+    return view('app_contacts',[
+        'siteNameTittle'=> 'Kontakty',
+    ]);
+})->name('app_contacts');
 require __DIR__.'/auth.php';
