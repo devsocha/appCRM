@@ -31,11 +31,7 @@ Route::get('/projekty',function(){
         'siteNameTittle'=> 'projekty',
     ]);
 })->name('app_projects');
-Route::get('/leady',function(){
-    return view('app_leads',[
-        'siteNameTittle'=> 'Leady',
-    ]);
-})->name('app_leads');
+Route::get('/leady',[\App\Http\Controllers\LeadController::class,'lead'])->name('app_leads');
 Route::get('/kontakty',function(){
     return view('app_contacts',[
         'siteNameTittle'=> 'Kontakty',
