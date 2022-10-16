@@ -1,8 +1,5 @@
 @extends('app')
 @section('content')
-<<<<<<< HEAD
-<h1>Hello, world! </h1>
-=======
 <div class="container text-center mt-5 p-5">
     <div class="row mb-5">
         <div class="col" style="border:1px grey solid; border-radius:15px;">
@@ -87,5 +84,5 @@
         </div>
     </div>
 </div>
->>>>>>> 4997f7d (Dodanie wyglądu szablonu statystyk)
+
 @endsection
