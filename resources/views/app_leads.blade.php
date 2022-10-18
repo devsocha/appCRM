@@ -1,10 +1,10 @@
 @extends('app')
 @section('content')
+    <ul class="list-group m-5">
     @foreach($firmy as $firma)
-        {{ $firma->nazwa }}
-        {{ $firma->nip }}
-        {{ $firma->nazwa }}
-        {{ $firma->nazwa }}
-        {{ $firma->nazwa }}
+            <a href="{{Route('companyShow',['id'=>$firma->id_firma])}}"><li class="list-group-item">
+                <span class="form-check-label">{{ $firma->nazwa }}</span>
+            </li></a>
     @endforeach
+    </ul>
 @endsection
