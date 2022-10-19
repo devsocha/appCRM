@@ -14,6 +14,26 @@
             <a href="#" class="btn btn-danger">Usuń</a>
         </div>
     </div>
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card m-5">
+                    <h5 class="card-header"><strong>Projekty</strong></h5>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card m-5">
+                    <h5 class="card-header"><strong>Kontakty</strong></h5>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 @endsection

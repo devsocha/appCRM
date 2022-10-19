@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class company extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_firma','nip','nazwa'];
+    protected $fillable = ['id_firma','nip','nazwa','ulica','kod_pocztowy','miasto','usługi','created_at'];
 
     public function lead(){
-        return $this->belongsTo(lead::class, 'id_lead','id_lead');
+        return $this->belongsTo(lead::class,'id_firma');
     }
 }
