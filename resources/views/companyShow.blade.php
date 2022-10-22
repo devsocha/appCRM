@@ -12,6 +12,7 @@
             <a href="#" class="btn btn-secondary">Dodaj Kontakt </a>
             <a href="#" class="btn btn-secondary">Dodaj Projekt </a>
             <a href="#" class="btn btn-danger">Usuń</a>
+            <a href="{{route('app_leads')}}" class="btn btn-dark">Cofnij </a>
         </div>
     </div>
     <div class="container text-center mt-5">

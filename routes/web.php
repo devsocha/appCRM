@@ -50,4 +50,5 @@ Route::get('/addCompany',function (){
         'siteNameTittle'=>'Dodawanie leada',
     ]);
 })->middleware(['auth', 'verified'])->name('app_add_lead');
+Route::post('/addCompany/add',[\App\Http\Controllers\LeadController::class,'addLead'])->middleware(['auth', 'verified'])->name('addCompany');
 require __DIR__.'/auth.php';

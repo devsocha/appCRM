@@ -25,7 +25,48 @@ class LeadController extends Controller
             'firmy'=> $firmy,
         ]);
     }
-    public function addLead(){
-        $id_company = $this->pobierzFirme();
+    public function addLead(Request $request){
+        $idCompanyPartner = $this->pobierzFirme();
+        $nipFirmy = $request->input('nipFirmy');
+        $branzaFirmy = $request->input('branzaFirmy');
+        $adresFirmy = $request->input('adresFirmy');
+        $kodPocztowyFirmy = $request->input('kodPocztowyFirmy');
+        $miejscowoscFirmy = $request->input('miejscowoscFirmy');
+        $nazwaFirmy = $request->input('nazwaFirmy');
+        $idCompany = $this->checkCompanyExist($nipFirmy,$branzaFirmy,$adresFirmy,$kodPocztowyFirmy,$miejscowoscFirmy,$nazwaFirmy);
+        $this->addLeadToDb($idCompany,$idCompanyPartner);
+        return $this->lead();
+    }
+    private function checkCompanyExist($nipFirmy,$branzaFirmy,$adresFirmy,$kodPocztowyFirmy,$miejscowoscFirmy,$nazwaFirmy){
+        if(company::where('nip',$nipFirmy)->exists()){
+            $firma = company::where('nip',$nipFirmy)->first();
+            $id_firma = $firma->id_firma;
+            return $id_firma;
+        }else{
+            $company = company::create([
+                'nazwa'=>$nazwaFirmy,
+                'nip'=>$nipFirmy,
+                'ulica'=>$adresFirmy,
+                'kod_pocztowy'=>$kodPocztowyFirmy,
+                'miasto'=>$miejscowoscFirmy,
+                'partnerstwo'=> 0,
+                'usługi'=>$branzaFirmy,
+            ]);
+            $firma = company::where('nip',$nipFirmy)->first();
+            $id_firma = $firma->id_firma;
+            return $id_firma;
+        }
+    }
+    private function addLeadToDb($idCompany, $idCompanyPartner){
+        if(lead::where('id_firma',$idCompany)->where('id_firma_partner',$idCompanyPartner)->exists()){
+            return;
+        }else{
+            $lead = lead::create([
+                'id_firma'=>$idCompany,
+                'id_firma_partner'=>$idCompanyPartner,
+            ]);
+            return $lead;
+        }
+
     }
 }
