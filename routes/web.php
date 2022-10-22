@@ -45,4 +45,9 @@ Route::get('/kontakty',function(){
     ]);
 })->middleware(['auth', 'verified'])->name('app_contacts');
 Route::get('/logout',[\App\Http\Controllers\logout_app::class ,'logout'])->name('logout_app');
+Route::get('/addCompany',function (){
+    return view('app_add_lead',[
+        'siteNameTittle'=>'Dodawanie leada',
+    ]);
+})->middleware(['auth', 'verified'])->name('app_add_lead');
 require __DIR__.'/auth.php';
