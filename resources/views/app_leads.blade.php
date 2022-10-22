@@ -1,5 +1,5 @@
 @extends('app')
-@section('content')
+@section('content'):
     <div class="container text-center mt-5">
         <div class="row">
             <div class="col">

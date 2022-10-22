@@ -13,33 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/app',[\App\Http\Controllers\app::class,'start_app'])->name('app');
 
-Route::get('/app/{id}',[\App\Http\Controllers\companyShowController::class , 'companyShow'])->name('companyShow');
+Route::get('/app/{id}',[\App\Http\Controllers\companyShowController::class , 'companyShow'])->middleware(['auth', 'verified'])->name('companyShow');
+
+
+Route::get('/app',[\App\Http\Controllers\app::class,'start_app'])->middleware(['auth', 'verified'])->name('app');
 
 Route::get('/podsumowanie',function(){
     return view('app_central',[
         'siteNameTittle'=> 'Podsumowanie',
     ]);
-})->name('app_central');
-
+})->middleware(['auth', 'verified'])->name('app_central');
 Route::get('/projekty',function(){
     return view('app_projects',[
         'siteNameTittle'=> 'projekty',
     ]);
-})->name('app_projects');
-Route::get('/leady',[\App\Http\Controllers\LeadController::class,'lead'])->name('app_leads');
+})->middleware(['auth', 'verified'])->name('app_projects');
+Route::get('/leady',[\App\Http\Controllers\LeadController::class,'lead'])->middleware(['auth', 'verified'])->name('app_leads');
 Route::get('/kontakty',function(){
     return view('app_contacts',[
         'siteNameTittle'=> 'Kontakty',
     ]);
-})->name('app_contacts');
+})->middleware(['auth', 'verified'])->name('app_contacts');
+Route::get('/logout',[\App\Http\Controllers\logout_app::class ,'logout'])->name('logout_app');
 require __DIR__.'/auth.php';
