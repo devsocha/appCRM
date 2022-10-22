@@ -17,12 +17,15 @@ class LeadController extends Controller
         return $id_company;
     }
 
-    public function lead(){
+    public function lead($nr){
         $id_company = $this->pobierzFirme();
-        $firmy = lead::where('id_firma_partner',$id_company)->get();
+        $skip = ($nr-1)*10;;
+        $firmy = lead::where('id_firma_partner',$id_company)->skip($skip)->take(10)->get();
+        $ilość = ceil(count(lead::where('id_firma_partner',$id_company)->get())/10);
         return view('app_leads',[
             'siteNameTittle' => 'Leady',
             'firmy'=> $firmy,
+            'ilość'=>$ilość,
         ]);
     }
     public function addLead(Request $request){
@@ -35,7 +38,8 @@ class LeadController extends Controller
         $nazwaFirmy = $request->input('nazwaFirmy');
         $idCompany = $this->checkCompanyExist($nipFirmy,$branzaFirmy,$adresFirmy,$kodPocztowyFirmy,$miejscowoscFirmy,$nazwaFirmy);
         $this->addLeadToDb($idCompany,$idCompanyPartner);
-        return $this->lead();
+        $nr=1;
+        return $this->lead($nr);
     }
     private function checkCompanyExist($nipFirmy,$branzaFirmy,$adresFirmy,$kodPocztowyFirmy,$miejscowoscFirmy,$nazwaFirmy){
         if(company::where('nip',$nipFirmy)->exists()){

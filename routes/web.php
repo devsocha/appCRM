@@ -38,7 +38,7 @@ Route::get('/projekty',function(){
         'siteNameTittle'=> 'projekty',
     ]);
 })->middleware(['auth', 'verified'])->name('app_projects');
-Route::get('/leady',[\App\Http\Controllers\LeadController::class,'lead'])->middleware(['auth', 'verified'])->name('app_leads');
+Route::get('/leady/{nr?}',[\App\Http\Controllers\LeadController::class,'lead'])->middleware(['auth', 'verified'])->name('app_leads');
 Route::get('/kontakty',function(){
     return view('app_contacts',[
         'siteNameTittle'=> 'Kontakty',

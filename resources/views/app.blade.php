@@ -26,7 +26,7 @@
                     <a class="nav-link" href="{{Route('app_projects')}}">Projekty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{Route('app_leads')}}">Leady</a>
+                    <a class="nav-link" href="{{Route('app_leads',['nr'=>'1'])}}">Leady</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link "href="{{Route('app_contacts')}}">Kontakty</a>
