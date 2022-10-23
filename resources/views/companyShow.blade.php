@@ -20,11 +20,28 @@
             <div class="col">
                 <div class="card m-5">
                     <h5 class="card-header"><strong>Projekty</strong></h5>
-                    <div class="card-body">
-
-                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item ">
+                            <div class="row ">
+                                <div class="col-2 text-left">
+                                    <strong>#</strong>
+                                </div>
+                                <div class="col-4">
+                                    <span class="form-check-label"><strong>Tytuł</strong></span>
+                                </div>
+                                <div class="col-3">
+                                    <span class="form-check-label"><strong>Kwota</strong></span>
+                                </div>
+                                <div class="col-3">
+                                    <span class="form-check-label"><strong>Status</strong></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+
             <div class="col">
                 <div class="card m-5">
                     <h5 class="card-header"><strong>Kontakty</strong></h5>
@@ -36,13 +53,13 @@
                                                 <strong>#</strong>
                                             </div>
                                             <div class="col-4">
-                                                <span class="form-check-label"><strong>Nazwa firmy</strong></span>
+                                                <span class="form-check-label"><strong>Imie</strong></span>
                                             </div>
                                             <div class="col-3">
-                                                <span class="form-check-label"><strong>Nip</strong></span>
+                                                <span class="form-check-label"><strong>Nazwisko</strong></span>
                                             </div>
                                             <div class="col-3">
-                                                <span class="form-check-label"><strong>Miejscowość</strong></span>
+                                                <span class="form-check-label"><strong>Telefon</strong></span>
                                             </div>
                                         </div>
                             </li>

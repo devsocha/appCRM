@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\company;
+use App\Models\contact;
 use App\Models\lead;
 use App\Models\Osoba;
 use Illuminate\Http\Request;
@@ -23,6 +25,16 @@ class ContactController extends Controller
           echo 's';
         }
     }
+    public function showContactsAll(){
+        $company = new LeadController();
+        $idCompanyPartner = $company->pobierzFirme();
+        $osoby = contact::where('id_firma_partner',$idCompanyPartner)->get();
+        return view('app_contacts',[
+                'siteNameTittle'=>'Kontakty',
+                'osoby'=>$osoby,
+            ]);
+    }
+
     public function addContact(){
 
     }

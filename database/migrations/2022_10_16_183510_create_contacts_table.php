@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_kontakt');
             $table->bigInteger('id_lead');
             $table->bigInteger('id_osoba');
+            $table->bigInteger('id_firma_partner')
             $table->timestamps();
         });
     }

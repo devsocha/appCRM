@@ -15,4 +15,7 @@ class contact extends Model
     public function osoba(){
         return $this->belongsTo(Osoba::class,'id_osoba','id_osoba');
     }
+    public function lead(){
+        return $this->belongsTo(contact::class,'id_lead','id_lead');
+    }
 }

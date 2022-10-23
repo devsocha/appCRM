@@ -14,4 +14,7 @@ class lead extends Model
 
         return $this->hasOne(company::class, 'id_firma', 'id_firma');
     }
+    public function contact(){
+        return $this->hasOne(contact::class,'id_lead','id_lead');
+    }
 }
