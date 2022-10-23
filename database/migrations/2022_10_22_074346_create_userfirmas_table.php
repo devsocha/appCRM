@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->bigInteger('id_firma');
             $table->bigInteger('id_osoba');
-            $table->integer('rola');
+            $table->integer('rola')->default(0);
         });
     }
 

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class contact extends Model
 {
     use HasFactory;
+    protected $fillable =[
+        'id_osoba',
+        'id_lead',
+    ];
+    public function osoba(){
+        return $this->belongsTo(Osoba::class,'id_osoba','id_osoba');
+    }
 }

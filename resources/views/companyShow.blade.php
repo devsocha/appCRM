@@ -28,9 +28,46 @@
             <div class="col">
                 <div class="card m-5">
                     <h5 class="card-header"><strong>Kontakty</strong></h5>
-                    <div class="card-body">
 
-                    </div>
+                        <ul class="list-group">
+                            <li class="list-group-item ">
+                                        <div class="row ">
+                                            <div class="col-2 text-left">
+                                                <strong>#</strong>
+                                            </div>
+                                            <div class="col-4">
+                                                <span class="form-check-label"><strong>Nazwa firmy</strong></span>
+                                            </div>
+                                            <div class="col-3">
+                                                <span class="form-check-label"><strong>Nip</strong></span>
+                                            </div>
+                                            <div class="col-3">
+                                                <span class="form-check-label"><strong>Miejscowość</strong></span>
+                                            </div>
+                                        </div>
+                            </li>
+                        @foreach($kontakty as $kontakt)
+                           <a href="{{Route('showContacts',['id_osoba'=> $kontakt->osoba->id_osoba , 'id_leada'=>$kontakt->id_lead])}}">
+                            <li class="list-group-item ">
+                                    <div class="row">
+                                        <div class="col-2 text-left">
+                                            {{$loop->iteration}}.
+                                        </div>
+                                        <div class="col-4">
+                                            <span class="form-check-label">{{$kontakt->osoba->imie}}</span>
+                                        </div>
+                                        <div class="col-3">
+                                            <span class="form-check-label">{{$kontakt->osoba->nazwisko}}</span>
+                                        </div>
+                                        <div class="col-3">
+                                            <span class="form-check-label">{{$kontakt->osoba->numer_telefonu}}</span>
+                                        </div>
+                                    </div>
+
+                            </li></a>
+                        @endforeach
+                        </ul>
+
                 </div>
             </div>
         </div>

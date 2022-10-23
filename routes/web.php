@@ -53,4 +53,5 @@ Route::get('/addCompany',function (){
 Route::post('/searchCompany',[\App\Http\Controllers\LeadController::class,'searchCompany'])->middleware(['auth', 'verified'])->name('searchCompany');
 Route::post('/addCompany/add',[\App\Http\Controllers\LeadController::class,'addLead'])->middleware(['auth', 'verified'])->name('addCompany');
 Route::get('/removeCompany/{id}',[\App\Http\Controllers\LeadController::class,'deleteCompany'])->middleware(['auth', 'verified'])->name('removeCompany');
+Route::get('/kontakt/{id_osoba}/{id_leada}',[\App\Http\Controllers\ContactController::class,'showContacts'])->middleware(['auth', 'verified'])->name('showContacts');
 require __DIR__.'/auth.php';
