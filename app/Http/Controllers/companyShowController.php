@@ -20,7 +20,7 @@ class companyShowController extends Controller
                 'firmy' => $firmy,
             ]);
         }else{
-            return $company->lead();
+            return $company->lead(1);
         }
 
     }

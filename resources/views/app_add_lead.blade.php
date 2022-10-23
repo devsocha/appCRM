@@ -12,7 +12,7 @@
                 <p class="card-text"><strong>Kod pocztowy: </strong><input type-="text" name="kodPocztowyFirmy" required/></p>
                 <p class="card-text"><strong>Miejscowość: </strong><input type-="text" name="miejscowoscFirmy" required/></p>
                 <input class="btn btn-secondary" type="submit" name="addCompany" value="Dodaj firmę">
-                <a href="{{Route('app_leads')}}" class="btn btn-danger">Cofnij</a>
+                <a href="{{Route('app_leads',['nr'=>1])}}" class="btn btn-danger">Cofnij</a>
             </div>
         </form>
 

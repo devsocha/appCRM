@@ -11,7 +11,7 @@
             <p class="card-text"><strong>Miejscowość: </strong>{{$firmy->miasto}}</p>
             <a href="#" class="btn btn-secondary">Dodaj Kontakt </a>
             <a href="#" class="btn btn-secondary">Dodaj Projekt </a>
-            <a href="#" class="btn btn-danger">Usuń</a>
+            <a href="{{Route('removeCompany',['id'=>$firmy->id_firma])}}" class="btn btn-danger">Usuń</a>
             <a href="{{Route('app_leads',['nr'=>1])}}" class="btn btn-dark">Cofnij </a>
         </div>
     </div>

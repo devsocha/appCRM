@@ -39,7 +39,7 @@ class LeadController extends Controller
         $idCompany = $this->checkCompanyExist($nipFirmy,$branzaFirmy,$adresFirmy,$kodPocztowyFirmy,$miejscowoscFirmy,$nazwaFirmy);
         $this->addLeadToDb($idCompany,$idCompanyPartner);
         $nr=1;
-        return $this->lead($nr);
+        return back();
     }
     private function checkCompanyExist($nipFirmy,$branzaFirmy,$adresFirmy,$kodPocztowyFirmy,$miejscowoscFirmy,$nazwaFirmy){
         if(company::where('nip',$nipFirmy)->exists()){
@@ -93,7 +93,11 @@ class LeadController extends Controller
         }else{
             return $this->lead(1);
         }
+    }
+    public function deleteCompany($id){
+        $idCompanyPartner = $this->pobierzFirme();
 
-
+        $lead = lead::where('id_firma_partner',$idCompanyPartner)->where('id_firma',$id)->delete();
+        return back();
     }
 }

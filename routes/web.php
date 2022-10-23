@@ -52,4 +52,5 @@ Route::get('/addCompany',function (){
 })->middleware(['auth', 'verified'])->name('app_add_lead');
 Route::post('/searchCompany',[\App\Http\Controllers\LeadController::class,'searchCompany'])->middleware(['auth', 'verified'])->name('searchCompany');
 Route::post('/addCompany/add',[\App\Http\Controllers\LeadController::class,'addLead'])->middleware(['auth', 'verified'])->name('addCompany');
+Route::get('/removeCompany/{id}',[\App\Http\Controllers\LeadController::class,'deleteCompany'])->middleware(['auth', 'verified'])->name('removeCompany');
 require __DIR__.'/auth.php';
