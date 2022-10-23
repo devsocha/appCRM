@@ -44,11 +44,12 @@ Route::get('/kontakty',function(){
         'siteNameTittle'=> 'Kontakty',
     ]);
 })->middleware(['auth', 'verified'])->name('app_contacts');
-Route::get('/logout',[\App\Http\Controllers\logout_app::class ,'logout'])->name('logout_app');
+Route::get('/logout',[\App\Http\Controllers\logout_app::class ,'logout'])->middleware(['auth', 'verified'])->name('logout_app');
 Route::get('/addCompany',function (){
     return view('app_add_lead',[
         'siteNameTittle'=>'Dodawanie leada',
     ]);
 })->middleware(['auth', 'verified'])->name('app_add_lead');
+Route::post('/searchCompany',[\App\Http\Controllers\LeadController::class,'searchCompany'])->middleware(['auth', 'verified'])->name('searchCompany');
 Route::post('/addCompany/add',[\App\Http\Controllers\LeadController::class,'addLead'])->middleware(['auth', 'verified'])->name('addCompany');
 require __DIR__.'/auth.php';

@@ -73,4 +73,27 @@ class LeadController extends Controller
         }
 
     }
+    public function searchCompany(Request $request){
+        $search = $request->input('search');
+        $company = $this->pobierzFirme();
+        $firmy = company::where('nazwa',$search)->orwhere('nip',$search)->first();
+        if(isset($firmy->id_firma)){
+            $id= $firmy->id_firma;
+        }else{
+            $id=0;
+        }
+        $comp = lead::where('id_firma_partner',$company)->where('id_firma',$id)->get();
+        if(lead::where('id_firma_partner',$company)->where('id_firma',$id)->exists()){
+            $ilość = 1;
+            return view('app_leads',[
+                'siteNameTittle' => 'Leady',
+                'firmy'=> $comp,
+                'ilość'=>$ilość,
+            ]);
+        }else{
+            return $this->lead(1);
+        }
+
+
+    }
 }

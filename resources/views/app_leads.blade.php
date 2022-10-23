@@ -8,10 +8,11 @@
                 </a>
             </div>
             <div class="col">
-                <form method="post" action="">
+                <form method="POST" action="{{Route('searchCompany')}}">
+                    @csrf
                 <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Wyszukaj" aria-label="Recipient's username" >
-                        <input class="btn btn-secondary" type="submit" />
+                    <input type="text" class="form-control" placeholder="Wpisz nazwę lub NIP" name="search" >
+                    <input class="btn btn-secondary" type="submit" value="Wyszukaj"/>
                 </div>
                 </form>
             </div>
