@@ -10,15 +10,16 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function showContacts($id_osoba, $id_lead){
+    public function showContacts($idOsoba, $idLead){
         $company = new LeadController();
         $idCompanyPartner = $company->pobierzFirme();
-        $checkExists = lead::where('id_lead',$id_lead)->where('id_firma_partner',$idCompanyPartner)->first();
+        $checkExists = lead::where('id_lead',$idLead)->where('id_firma_partner',$idCompanyPartner)->first();
         if($checkExists){
-            $osoba = Osoba::where('id_osoba',$id_osoba)->first();
+            $osoba = Osoba::where('id_osoba',$idOsoba)->first();
             return view('showContact',[
                 'siteNameTittle'=>'Persona',
                 'osoba'=>$osoba,
+                'idLeada'=>$idLead,
             ]);
         }
         else{
@@ -35,7 +36,70 @@ class ContactController extends Controller
             ]);
     }
 
-    public function addContact(){
+    public function addContact($id){
+        $idFirma = $id;
+        return view('addContact',[
+            'siteNameTittle' => 'Dodawanie Kontaktu',
+            'idFirma'=>$idFirma
+        ]);
+    }
+    public function addContactDb($id, Request $request){
+        $imie = $request->input('name');
+        $nazwisko = $request->input('secoundName');
+        $phone = $request->input('phone');
+        $mail = $request->input('mail');
+        $dzial = $request->input('dzial');
+        $stanowisko = $request->input('stanowisko');
+        $city = $request->input('city');
+        $hod = $request->input('hod');
+        $hdo = $request->input('hdo');
+        (string)$hods=$hod;
+        (string)$hdos=$hdo;
+        $godzinyPracy = $hods . '-' . $hdos;
+        $leadController = new LeadController();
+        $lead = $leadController->sprawdzLeada($id);
+        if($lead==0){
+            return back();
+        }else{
+            $idOsoba = $this->checkContactExist($imie,$nazwisko,$phone,$mail,$dzial,$stanowisko,$city,$godzinyPracy,$id);
+            $firmaPartner = $leadController->pobierzFirme();
+            $this->addContactOsoba($lead,$idOsoba,$firmaPartner);
+            $view = new companyShowController();
+            return $view->companyShow($id);
+        }
+    }
+    private function addContactOsoba($idLead,$idOsoba,$idFirmaPartner){
+        $contacts = contact::create([
+            'id_lead'=>$idLead,
+            'id_osoba'=>$idOsoba,
+            'id_firma_partner'=>$idFirmaPartner,
+        ]);
+    }
+    private function checkContactExist($imie,$nazwisko,$phone,$mail,$dzial,$stanowisko,$city,$godzinyPracy,$idFirma){
+        $check = Osoba::where('imie',$imie)->where('nazwisko',$nazwisko)->exists();
+        if($check){
+            $osoba =Osoba::where('imie',$imie)->where('nazwisko',$nazwisko)->first();
+            $idOsoba = $osoba->id_osoba;
+            return $idOsoba;
+        }else{
+            Osoba::create([
+                'imie'=>$imie,
+                'nazwisko'=>$nazwisko,
+                'dział'=>$dzial,
+                'miejscowość'=>$city,
+                'stanowisko'=>$stanowisko,
+                'numer_telefonu'=>$phone,
+                'email'=>$mail,
+                'id_firma'=>$idFirma,
+                'godziny_pracy'=>$godzinyPracy,
+            ]);
+            $osoba =Osoba::where('imie',$imie)->where('nazwisko',$nazwisko)->first();
+            $idOsoba = $osoba->id_osoba;
+            return $idOsoba;
+        }
+    }
+    public function editContact($idUser,$idFirma){
+
 
     }
 

@@ -50,4 +50,7 @@ Route::post('/searchCompany',[\App\Http\Controllers\LeadController::class,'searc
 Route::post('/addCompany/add',[\App\Http\Controllers\LeadController::class,'addLead'])->middleware(['auth', 'verified'])->name('addCompany');
 Route::get('/removeCompany/{id}',[\App\Http\Controllers\LeadController::class,'deleteCompany'])->middleware(['auth', 'verified'])->name('removeCompany');
 Route::get('/kontakt/{id_osoba}/{id_leada}',[\App\Http\Controllers\ContactController::class,'showContacts'])->middleware(['auth', 'verified'])->name('showContacts');
+Route::get('addContact/{id}',[\App\Http\Controllers\ContactController::class,'addContact'])->middleware(['auth', 'verified'])->name('addContact');
+Route::post('addContactDb/{id}',[\App\Http\Controllers\ContactController::class,'addContactDb'])->middleware(['auth', 'verified'])->name('addContactDb');
+Route::get('editContact/{id}/{idlead}',[\App\Http\Controllers\ContactController::class,'editContact'])->middleware(['auth', 'verified'])->name('editContact');
 require __DIR__.'/auth.php';

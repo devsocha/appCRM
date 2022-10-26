@@ -16,10 +16,20 @@ class LeadController extends Controller
         $id_company = $id_firmy->id_firma;
         return $id_company;
     }
+    public function sprawdzLeada($idFirmy){
+        $idPartnera = $this->pobierzFirme();
+        if(lead::where('id_firma',$idFirmy)->where('id_firma_partner',$idPartnera)->exists()){
+            $lead = lead::where('id_firma',$idFirmy)->where('id_firma_partner',$idPartnera)->first();
+            return $lead->id_lead;
+        }else{
+
+            return $lead = 0;
+        }
+    }
 
     public function lead($nr){
         $id_company = $this->pobierzFirme();
-        $skip = ($nr-1)*10;;
+        $skip = ($nr-1)*10;
         $firmy = lead::where('id_firma_partner',$id_company)->skip($skip)->take(10)->get();
         $ilość = ceil(count(lead::where('id_firma_partner',$id_company)->get())/10);
         return view('app_leads',[

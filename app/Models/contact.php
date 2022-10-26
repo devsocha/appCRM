@@ -11,6 +11,7 @@ class contact extends Model
     protected $fillable =[
         'id_osoba',
         'id_lead',
+        'id_firma_partner'
     ];
     public function osoba(){
         return $this->belongsTo(Osoba::class,'id_osoba','id_osoba');
