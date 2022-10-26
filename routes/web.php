@@ -52,5 +52,6 @@ Route::get('/removeCompany/{id}',[\App\Http\Controllers\LeadController::class,'d
 Route::get('/kontakt/{id_osoba}/{id_leada}',[\App\Http\Controllers\ContactController::class,'showContacts'])->middleware(['auth', 'verified'])->name('showContacts');
 Route::get('addContact/{id}',[\App\Http\Controllers\ContactController::class,'addContact'])->middleware(['auth', 'verified'])->name('addContact');
 Route::post('addContactDb/{id}',[\App\Http\Controllers\ContactController::class,'addContactDb'])->middleware(['auth', 'verified'])->name('addContactDb');
-Route::get('editContact/{id}/{idlead}',[\App\Http\Controllers\ContactController::class,'editContact'])->middleware(['auth', 'verified'])->name('editContact');
+Route::get('editContact/{id}/{idLead}',[\App\Http\Controllers\ContactController::class,'editContact'])->middleware(['auth', 'verified'])->name('editContact');
+Route::post('editContactDb/{id}/{idLead}',[\App\Http\Controllers\ContactController::class,'editContactDb'])->middleware(['auth', 'verified'])->name('editContactDb');
 require __DIR__.'/auth.php';

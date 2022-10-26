@@ -21,9 +21,8 @@ class ContactController extends Controller
                 'osoba'=>$osoba,
                 'idLeada'=>$idLead,
             ]);
-        }
-        else{
-          echo 's';
+        }else{
+            return back();
         }
     }
     public function showContactsAll(){
@@ -98,9 +97,50 @@ class ContactController extends Controller
             return $idOsoba;
         }
     }
-    public function editContact($idUser,$idFirma){
-
+    public function editContactDb($idOsoba,$idLead, Request $request){
+        $partnerFirma = new LeadController();
+        $idPartnerFirma = $partnerFirma->pobierzFirme();
+        $hod = $request->input('hod');
+        $hdo = $request->input('hdo');
+        (string)$hods=$hod;
+        (string)$hdos=$hdo;
+        $godzinyPracy = $hods.'-'.$hdos;
+        if(contact::where('id_firma_partner',$idPartnerFirma)->where('id_osoba',$idOsoba)->exists()){
+            $updateOsoba = Osoba::where('id_osoba',$idOsoba)->update([
+                'imie'=>$request->input('name'),
+                'nazwisko'=>$request->input('secoundName'),
+                'dział'=>$request->input('dzial'),
+                'miejscowość'=>$request->input('city'),
+                'stanowisko'=>$request->input('stanowisko'),
+                'numer_telefonu'=>$request->input('phone'),
+                'email'=>$request->input('mail'),
+                'godziny_pracy'=>$godzinyPracy,
+            ]);
+            return back();
+        }else{
+            return back();
+        }
 
     }
+    public function editContact($idOsoba,$idLead){
+        $partnerFirma = new LeadController();
+        $idPartnerFirma = $partnerFirma->pobierzFirme();
+        if(contact::where('id_firma_partner',$idPartnerFirma)->where('id_osoba',$idOsoba)->exists()){
+            $osoba = Osoba::where('id_osoba',$idOsoba)->first();
+            return view('editContact',[
+                'siteNameTittle'=>'Edycja kontaktu',
+                'osoba'=>$osoba,
+                'id'=>$idOsoba,
+                'idLead'=>$idLead,
+            ]);
+        }else{
+           return back();
+        }
+//
+//
+//        ])
+
+    }
+
 
 }
