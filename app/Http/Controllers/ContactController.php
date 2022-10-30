@@ -136,11 +136,17 @@ class ContactController extends Controller
         }else{
            return back();
         }
-//
-//
-//        ])
+
 
     }
-
+    public function deleteContact($idOsoba){
+        $partnerFirma = new LeadController();
+        $idPartnerFirma = $partnerFirma->pobierzFirme();
+        $osoba = Osoba::where('id_osoba',$idOsoba)->first();
+        $firmaOsoby = $osoba->id_firma;
+        $firma = contact::where('id_osoba',$idOsoba)->where('id_firma_partner',$idPartnerFirma)->delete();
+        $returnFirma = new companyShowController();
+        return $returnFirma->companyShow($firmaOsoby);
+    }
 
 }

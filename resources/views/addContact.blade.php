@@ -19,7 +19,7 @@
                 <p class="card-text"><strong>Stanowisko: </strong><input type-="text" name="stanowisko" placeholder="Example" required/></p>
                 <p class="card-text"><strong>Miejscowość: </strong><input type-="text" name="city" placeholder="Example City" required/></p>
                 <input class="btn btn-secondary" type="submit" name="addCompany" value="Dodaj osobe">
-                <a href="{{Route('companyShow',['id'=>$id_firma])}}" class="btn btn-danger">Cofnij</a>
+                <a href="{{Route('companyShow',['id'=>$idFirma])}}" class="btn btn-danger">Cofnij</a>
             </div>
         </form>
 

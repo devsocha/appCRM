@@ -9,7 +9,7 @@
         <p class="card-text"><strong>Stanowisko: </strong>{{$osoba->stanowisko}} </p>
         <p class="card-text"><strong>Miejscowość: </strong>{{$osoba->miejscowość}}</p>
         <a href="{{Route('editContact',['id'=>$osoba->id_osoba,'idLead'=>$idLeada])}}" class="btn btn-secondary">Edytuj kontakt </a>
-        <a href="#" class="btn btn-danger">Usuń</a>
+        <a href="{{Route('deleteContact',['id'=>$osoba->id_osoba])}}" class="btn btn-danger">Usuń</a>
         <a href="{{Route('companyShow',['id'=>$osoba->id_firma])}}" class="btn btn-dark">Cofnij </a>
     </div>
 </div>

@@ -53,5 +53,6 @@ Route::get('/kontakt/{id_osoba}/{id_leada}',[\App\Http\Controllers\ContactContro
 Route::get('addContact/{id}',[\App\Http\Controllers\ContactController::class,'addContact'])->middleware(['auth', 'verified'])->name('addContact');
 Route::post('addContactDb/{id}',[\App\Http\Controllers\ContactController::class,'addContactDb'])->middleware(['auth', 'verified'])->name('addContactDb');
 Route::get('editContact/{id}/{idLead}',[\App\Http\Controllers\ContactController::class,'editContact'])->middleware(['auth', 'verified'])->name('editContact');
+Route::get('deleteContact/{id}',[\App\Http\Controllers\ContactController::class,'deleteContact'])->middleware(['auth', 'verified'])->name('deleteContact');
 Route::post('editContactDb/{id}/{idLead}',[\App\Http\Controllers\ContactController::class,'editContactDb'])->middleware(['auth', 'verified'])->name('editContactDb');
 require __DIR__.'/auth.php';
