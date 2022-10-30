@@ -30,20 +30,42 @@
                                     <span class="form-check-label"><strong>Tytuł</strong></span>
                                 </div>
                                 <div class="col-3">
-                                    <span class="form-check-label"><strong>Kwota</strong></span>
+                                    <span class="form-check-label"><strong>Kwota netto</strong></span>
                                 </div>
                                 <div class="col-3">
                                     <span class="form-check-label"><strong>Status</strong></span>
                                 </div>
                             </div>
                         </li>
-                    </ul>
-                </div>
+
+                        @foreach($projekty as $projekt)
+
+                            <a href="#">
+                                                <li class="list-group-item ">
+                                                    <div class="row">
+                                                        <div class="col-2 text-left">
+                                                            {{$loop->iteration}}.
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <span class="form-check-label">{{$projekt->project->nazwa}}</span>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <span class="form-check-label">{{$projekt->project->kwota_netto}} zł</span>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <span class="form-check-label">{{$projekt->project->rodzaj}}</span>
+                                                        </div>
+                                                    </div>
+
+                                                </li></a>
+                @endforeach
+                </ul>
             </div>
+        </div>
 
 
-            <div class="col">
-                <div class="card m-5">
+        <div class="col">
+            <div class="card m-5">
                     <h5 class="card-header"><strong>Kontakty</strong></h5>
 
                         <ul class="list-group">

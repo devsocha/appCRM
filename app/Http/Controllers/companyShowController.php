@@ -18,10 +18,13 @@ class companyShowController extends Controller
         if(lead::where('id_firma',$idCompany)->where('id_firma_partner',$idCompanyPartner)->exists()){
             $id_leada = $this->takeLead($idCompany,$idCompanyPartner);
             $kontakty = contact::where('id_lead',$id_leada)->get();
+            $project = new ProjectController();
+            $projects = $project->showProject($id);
             return view('companyShow', [
                 'siteNameTittle' => 'Kontakty',
                 'firmy' => $firmy,
                 'kontakty'=>$kontakty,
+                'projekty'=>$projects,
             ]);
         }else{
             return $company->lead(1);
