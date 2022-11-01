@@ -30,7 +30,7 @@ class LeadController extends Controller
     public function lead($nr){
         $id_company = $this->pobierzFirme();
         $skip = ($nr-1)*10;
-        $firmy = lead::where('id_firma_partner',$id_company)->skip($skip)->take(10)->get();
+        $firmy = lead::where('id_firma_partner',$id_company)->skip($skip)->take(10)->orderBy("updated_at",'desc')->get();
         $ilość = ceil(count(lead::where('id_firma_partner',$id_company)->get())/10);
         return view('app_leads',[
             'siteNameTittle' => 'Leady',

@@ -17,7 +17,7 @@ class companyShowController extends Controller
         $idCompanyPartner = $company->pobierzFirme();
         if(lead::where('id_firma',$idCompany)->where('id_firma_partner',$idCompanyPartner)->exists()){
             $id_leada = $this->takeLead($idCompany,$idCompanyPartner);
-            $kontakty = contact::where('id_lead',$id_leada)->get();
+            $kontakty = contact::where('id_lead',$id_leada)->orderBy("updated_at",'desc')->get();
             $project = new ProjectController();
             $projects = $project->showProject($id);
             return view('companyShow', [

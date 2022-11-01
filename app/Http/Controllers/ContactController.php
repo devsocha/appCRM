@@ -28,7 +28,7 @@ class ContactController extends Controller
     public function showContactsAll(){
         $company = new LeadController();
         $idCompanyPartner = $company->pobierzFirme();
-        $osoby = contact::where('id_firma_partner',$idCompanyPartner)->get();
+        $osoby = contact::where('id_firma_partner',$idCompanyPartner)->orderBy("updated_at",'desc')->get();
         return view('app_contacts',[
                 'siteNameTittle'=>'Kontakty',
                 'osoby'=>$osoby,

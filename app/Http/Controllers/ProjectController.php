@@ -16,22 +16,18 @@ class ProjectController extends Controller
         if(lead::where('id_firma',$idFirma)->where('id_firma_partner',$idFirmaPartner)->exists()){
             $lead = lead::where('id_firma',$idFirma)->where('id_firma_partner',$idFirmaPartner)->first();
             $idLead = $lead->id_lead;
-            $leadProject = leadproject::where('id_lead',$idLead)->get();
+            $leadProject = leadproject::where('id_lead',$idLead)->orderBy("updated_at",'desc')->get();
             return $leadProject;
         }
     }
     public function showProjectAll(){
         $leadController = new LeadController();
         $idFirmaPartner = $leadController->pobierzFirme();
-        $leady = lead::where('id_firma_partner',$idFirmaPartner)->get();
-            foreach($leady as $lead){
-                echo $lead->leadProject->id_project;
-            }
-
-//        return view('app_projects',[
-//            'siteNameTittle'=> 'projekty',
-//            'leady'=> $leady,
-//        ]);
+        $projects = leadproject::where('id_firma_partner',$idFirmaPartner)->orderBy("updated_at",'desc')->get();
+        return view('app_projects',[
+            'siteNameTittle'=> 'projekty',
+            'projects'=> $projects,
+        ]);
     }
     public function addProject(){
     }
