@@ -33,11 +33,7 @@ Route::get('/podsumowanie',function(){
         'siteNameTittle'=> 'Podsumowanie',
     ]);
 })->middleware(['auth', 'verified'])->name('app_central');
-Route::get('/projekty',function(){
-    return view('app_projects',[
-        'siteNameTittle'=> 'projekty',
-    ]);
-})->middleware(['auth', 'verified'])->name('app_projects');
+Route::get('/projekty',[\App\Http\Controllers\ProjectController::class,'showProjectAll'])->middleware(['auth', 'verified'])->name('app_projects');
 Route::get('/leady/{nr?}',[\App\Http\Controllers\LeadController::class,'lead'])->middleware(['auth', 'verified'])->name('app_leads');
 Route::get('/kontakty',[\App\Http\Controllers\ContactController::class,'showContactsAll'])->middleware(['auth', 'verified'])->name('showContactsAll');
 Route::get('/logout',[\App\Http\Controllers\logout_app::class ,'logout'])->middleware(['auth', 'verified'])->name('logout_app');

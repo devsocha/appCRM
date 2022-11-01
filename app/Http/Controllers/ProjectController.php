@@ -20,6 +20,19 @@ class ProjectController extends Controller
             return $leadProject;
         }
     }
+    public function showProjectAll(){
+        $leadController = new LeadController();
+        $idFirmaPartner = $leadController->pobierzFirme();
+        $leady = lead::where('id_firma_partner',$idFirmaPartner)->get();
+            foreach($leady as $lead){
+                echo $lead->leadProject->id_project;
+            }
+
+//        return view('app_projects',[
+//            'siteNameTittle'=> 'projekty',
+//            'leady'=> $leady,
+//        ]);
+    }
     public function addProject(){
     }
     public function deleteProject(){

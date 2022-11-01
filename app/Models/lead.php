@@ -17,4 +17,7 @@ class lead extends Model
     public function contact(){
         return $this->hasOne(contact::class,'id_lead','id_lead');
     }
+    public function leadProject(){
+        return $this->hasOne(leadproject::class, 'id_lead','id_lead');
+    }
 }

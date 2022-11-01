@@ -12,6 +12,9 @@ class leadproject extends Model
         'id_lead',
         'id_project',
         ];
+    public function lead(){
+        return $this->belongsTo(lead::class,'id_lead','id_lead');
+    }
     public function project(){
         return $this->hasOne(project::class,'id_projekt');
     }

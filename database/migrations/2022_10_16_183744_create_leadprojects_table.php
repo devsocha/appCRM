@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('id_lead');
             $table->bigInteger('id_project');
+            $table->bigInteger('id_firma_partner');
             $table->timestamps();
         });
     }
