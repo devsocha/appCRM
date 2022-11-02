@@ -51,4 +51,6 @@ Route::post('addContactDb/{id}',[\App\Http\Controllers\ContactController::class,
 Route::get('editContact/{id}/{idLead}',[\App\Http\Controllers\ContactController::class,'editContact'])->middleware(['auth', 'verified'])->name('editContact');
 Route::get('deleteContact/{id}',[\App\Http\Controllers\ContactController::class,'deleteContact'])->middleware(['auth', 'verified'])->name('deleteContact');
 Route::post('editContactDb/{id}/{idLead}',[\App\Http\Controllers\ContactController::class,'editContactDb'])->middleware(['auth', 'verified'])->name('editContactDb');
+Route::get('addProject/{id}',[\App\Http\Controllers\ProjectController::class,'addProject'])->middleware(['auth', 'verified'])->name('addProject');
+Route::POST('addProjectDb/{id}',[\App\Http\Controllers\ProjectController::class,'addProjectDb'])->middleware(['auth', 'verified'])->name('addProjectDb');
 require __DIR__.'/auth.php';

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\lead;
 use App\Models\leadproject;
 use App\Models\project;
+use App\Models\userfirma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -29,7 +31,16 @@ class ProjectController extends Controller
             'projects'=> $projects,
         ]);
     }
-    public function addProject(){
+    public function addProject($idFirma){
+        $leadController = new LeadController();
+        $idFirmaPartner = $leadController->pobierzFirme();
+        $id = Auth::id();
+        $handlowcy = userfirma::where('id_firma', $idFirmaPartner)->where('id_osoba','!=',$id)->get();
+       return view('add_project',[
+           'siteNameTittle' => 'DodawanieProjektu',
+           'idFirma'=>$idFirma,
+           'handlowcy'=>$handlowcy,
+       ]);
     }
     public function deleteProject(){
 
@@ -37,7 +48,7 @@ class ProjectController extends Controller
     public function editProject(){
 
     }
-    public function addToDbProject(){
-
+    public function addProjectDb($idFirma, Request $request){
+        echo $request->input('osoba');
     }
 }
