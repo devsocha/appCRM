@@ -13,7 +13,7 @@
                 <h5 class="card-title"><strong>Kwota netto: </strong> <input type-="number" name="kwotaNetto" placeholder="12221" required/> </h5></br>
                 <p class="card-text"><strong>Przypisz handlowca:  </strong>
                     <select name="osoba" >
-                        <option>W swoim imieniu</option>
+                        <option value="1">W swoim imieniu</option>
 
                         @foreach($handlowcy as $handlowiec)
                             <option value="{{$handlowiec->user->id}}">{{$handlowiec->user->name}}</option>

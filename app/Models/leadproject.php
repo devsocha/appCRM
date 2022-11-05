@@ -11,11 +11,12 @@ class leadproject extends Model
     protected $fillable = [
         'id_lead',
         'id_project',
+        'id_firma_partner',
         ];
     public function lead(){
         return $this->belongsTo(lead::class,'id_lead','id_lead');
     }
     public function project(){
-        return $this->hasOne(project::class,'id_projekt');
+        return $this->hasOne(project::class,'id_projekt','id_project');
     }
 }

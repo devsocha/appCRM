@@ -49,6 +49,42 @@ class ProjectController extends Controller
 
     }
     public function addProjectDb($idFirma, Request $request){
-        echo $request->input('osoba');
+        $leadController = new LeadController();
+        $idFirmaPartner = $leadController->pobierzFirme();
+        $idLead = $this->pobierzLeada($idFirma,$idFirmaPartner);
+        $opis = $request->input('opis');
+        $tytul = $request->input('nazwa');
+        $kwotaNetto = $request->input('kwotaNetto');
+        $osoba = $request->input('osoba');
+        if(lead::where('id_lead',$idLead)->where('id_firma_partner',$idFirmaPartner)->where('id_firma',$idFirma)->exists()){
+            $this->addToDbProject($idLead, $idFirma, $idFirmaPartner, $tytul, $opis, $kwotaNetto, $osoba);
+            $companyShow= new companyShowController();
+            return $companyShow->companyShow($idFirma);
+        }else{
+            $companyShow= new companyShowController();
+            return $companyShow->companyShow($idFirma);
+        }
+
+
     }
+    public function pobierzLeada($idFirma, $idFirmaPartner){
+        $lead = lead::where('id_firma',$idFirma)->where('id_firma_partner',$idFirmaPartner)->first();
+        return $lead->id_lead;
+    }
+    private function addToDbProject($idLead, $idFirma, $idPartnerFirma, $tytul, $opis, $kwotaNetto, $osoba){
+        $addProject = project::create([
+            'nazwa'=>$tytul,
+            'opis'=>$opis,
+            'kwota_netto'=>$kwotaNetto,
+            'id_osoba'=>$osoba
+        ]);
+        $project = project::where('nazwa',$tytul)->where('opis',$opis)->where('kwota_netto',$kwotaNetto)->where('id_osoba',$osoba)->first();
+        $idProjekt = $project->id_projekt;
+        $addProjectLead = leadproject::create([
+            'id_lead'=> $idLead,
+            'id_firma_partner'=>$idPartnerFirma,
+            'id_project'=>$idProjekt,
+        ]);
+    }
+
 }
