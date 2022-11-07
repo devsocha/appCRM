@@ -22,7 +22,7 @@
                 </div>
             </li>
             @foreach($projects as $project)
-                <a href="#">
+                <a href="{{Route('showProjectToScreen',['idproject'=>$project->id_project,'idfirma'=>$project->lead->id_firma])}}">
                     <li class="list-group-item ">
                         <div class="container ">
                             <div class="row">

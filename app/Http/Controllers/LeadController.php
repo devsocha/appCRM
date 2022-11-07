@@ -22,7 +22,6 @@ class LeadController extends Controller
             $lead = lead::where('id_firma',$idFirmy)->where('id_firma_partner',$idPartnera)->first();
             return $lead->id_lead;
         }else{
-
             return $lead = 0;
         }
     }

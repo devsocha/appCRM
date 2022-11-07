@@ -44,4 +44,7 @@ class User extends Authenticatable
     public function userfirma(){
         return $this->hasOne(userfirma::class,'id_osoba');
     }
+    public function project(){
+        return $this->hasOne(project::class,'id_osoba','id');
+    }
 }

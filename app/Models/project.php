@@ -12,4 +12,7 @@ class project extends Model
     public function leadProject(){
         return $this->belongsTo(leadproject::class,'id_project','id_projekt');
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

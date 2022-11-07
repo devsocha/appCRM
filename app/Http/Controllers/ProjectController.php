@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\lead;
 use App\Models\leadproject;
 use App\Models\project;
+use App\Models\User;
 use App\Models\userfirma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +43,35 @@ class ProjectController extends Controller
            'handlowcy'=>$handlowcy,
        ]);
     }
-    public function deleteProject(){
-
+    public function showProjectToScreen($idProjekt, $idFirma){
+        $leadController = new LeadController();
+        $idFirmaPartner = $leadController->pobierzFirme();
+        if(lead::where('id_firma',$idFirma)->where('id_firma_partner',$idFirmaPartner)->exists()){
+            $leadProject = leadproject::where('id_firma_partner',$idFirmaPartner)->where('id_project',$idProjekt)->first();
+            $idHandlowca = $leadProject->project->id_osoba;
+            $handlowiec = User::where('id',$idHandlowca)->first();
+            return view('showProject',[
+                'siteNameTittle'=>'Projekt',
+                'projekt'=>$leadProject,
+                'handlowiec'=>$handlowiec,
+            ]);
+        }else {
+            return back();
+        }
+    }
+    public function deleteProject($idProjekt, $idFirma){
+        $leadController = new LeadController();
+        $firmaPartner = $leadController->pobierzFirme();
+        $lead = lead::where('id_firma',$idFirma)->where('id_firma_partner',$firmaPartner)->first();
+        if($lead){
+            $leadProject = leadproject::where('id_lead',$lead->id_lead)->where('id_project',$idProjekt)->where('id_firma_partner',$firmaPartner)->delete();
+            $project = project::where('id_projekt',$idProjekt)->delete();
+            $companyShow= new companyShowController();
+            return $companyShow->companyShow($idFirma);
+        }else{
+            $companyShow= new companyShowController();
+            return $companyShow->companyShow($idFirma);
+        }
     }
     public function editProject(){
 

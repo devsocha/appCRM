@@ -40,7 +40,7 @@
 
                         @foreach($projekty as $projekt)
 
-                            <a href="#">
+                            <a href="{{Route('showProjectToScreen',['idproject'=>$projekt->id_project,'idfirma'=>$firmy->id_firma])}}">
                                                 <li class="list-group-item ">
                                                     <div class="row">
                                                         <div class="col-2 text-left">

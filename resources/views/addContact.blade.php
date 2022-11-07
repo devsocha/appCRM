@@ -12,8 +12,8 @@
                 <h5 class="card-title"><strong>Numer telefonu: </strong><input type-="number" name="phone" placeholder="333222111" required /></h5>
                 <h5 class="card-title"><strong>Email: </strong> <input type-="text" name="mail" placeholder="example@example.pl" required/> </h5></br>
                 <p class="card-text"><strong>Godziny pracy: </strong>
-                    <input type-="text" name="hod" placeholder="8" required/> -
-                    <input type-="text" name="hdo" placeholder="16" required/>
+                    <input type-="text" name="hod" placeholder="8"/> -
+                    <input type-="text" name="hdo" placeholder="16"/>
                 </p>
                 <p class="card-text"><strong>Dział: </strong><input type-="text" name="dzial" placeholder="Example" required/> </p>
                 <p class="card-text"><strong>Stanowisko: </strong><input type-="text" name="stanowisko" placeholder="Example" required/></p>
