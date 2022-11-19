@@ -28,11 +28,7 @@ Route::get('/app/{id}',[\App\Http\Controllers\companyShowController::class , 'co
 
 Route::get('/app',[\App\Http\Controllers\app::class,'start_app'])->middleware(['auth', 'verified'])->name('app');
 
-Route::get('/podsumowanie',function(){
-    return view('app_central',[
-        'siteNameTittle'=> 'Podsumowanie',
-    ]);
-})->middleware(['auth', 'verified'])->name('app_central');
+Route::get('/podsumowanie',[\App\Http\Controllers\statsController::class,'showMoney'])->middleware(['auth', 'verified'])->name('app_central');
 Route::get('/projekty',[\App\Http\Controllers\ProjectController::class,'showProjectAll'])->middleware(['auth', 'verified'])->name('app_projects');
 Route::get('/leady/{nr?}',[\App\Http\Controllers\LeadController::class,'lead'])->middleware(['auth', 'verified'])->name('app_leads');
 Route::get('/kontakty',[\App\Http\Controllers\ContactController::class,'showContactsAll'])->middleware(['auth', 'verified'])->name('showContactsAll');
@@ -55,5 +51,6 @@ Route::get('addProject/{id}',[\App\Http\Controllers\ProjectController::class,'ad
 Route::get('projekt/{idproject}/{idfirma}',[\App\Http\Controllers\ProjectController::class,'showProjectToScreen'])->middleware(['auth', 'verified'])->name('showProjectToScreen');
 Route::POST('addProjectDb/{id}',[\App\Http\Controllers\ProjectController::class,'addProjectDb'])->middleware(['auth', 'verified'])->name('addProjectDb');
 Route::get('deleteproject/{idproject}/{idfirma}',[\App\Http\Controllers\ProjectController::class,'deleteProject'])->middleware(['auth', 'verified'])->name('deleteProject');
-
+Route::get('editProject/{idproject}/{idfirma}',[\App\Http\Controllers\ProjectController::class,'editProject'])->middleware(['auth', 'verified'])->name('editProject');
+Route::post('editProjectDb/{idproject}',[\App\Http\Controllers\ProjectController::class, 'editProjectDb'])->middleware(['auth', 'verified'])->name('editProjectDb');
 require __DIR__.'/auth.php';

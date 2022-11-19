@@ -7,7 +7,7 @@
             <h5 class="card-title"><strong>Status: </strong> {{$projekt->project->rodzaj}}</h5></br>
             <p class="card-text"><strong>Przypisany handlowiec: {{$handlowiec->name}}</strong></p>
             <p class="card-text"><strong>Opis: {{$projekt->project->opis}}</strong></p>
-            <a href="#" class="btn btn-secondary">Edytuj Projekt </a>
+            <a href="{{route('editProject',['idproject'=>$projekt->id_project,'idfirma'=>$projekt->lead->id_firma])}}" class="btn btn-secondary">Edytuj Projekt </a>
             <a href="{{route('deleteProject',['idproject'=>$projekt->id_project,'idfirma'=>$projekt->lead->id_firma])}}" class="btn btn-danger">Usuń</a>
             <a href="{{Route('companyShow',['id'=>$projekt->lead->id_firma])}}" class="btn btn-dark">Cofnij </a>
         </div>

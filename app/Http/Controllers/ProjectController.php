@@ -73,8 +73,41 @@ class ProjectController extends Controller
             return $companyShow->companyShow($idFirma);
         }
     }
-    public function editProject(){
-
+    public function editProject($idProject, $idFirma){
+        $leadController = new LeadController();
+        $idFirmaPartner = $leadController->pobierzFirme();
+        $project = project::where('id_projekt',$idProject)->first();
+        $handlowiec = User::where('id',$project->id_osoba)->first();
+        $handlowcy = userfirma::where('id_firma',$idFirmaPartner)->get();
+    return view('editProject',[
+        'siteNameTittle' => 'edycja projektu',
+        'project'=> $project,
+        'handlowiecPrzypisany' => $handlowiec,
+        'handlowcy'=>$handlowcy,
+        'idFirma'=>$idFirma,
+    ]);
+    }
+    public function editProjectDb(Request $request, $idProjekt){
+        $leadController = new LeadController();
+        $idFirmaPartner = $leadController->pobierzFirme();
+        $nazwa = $request->input('nazwa');
+        $opis = $request->input('opis');
+        $kwotaNetto = $request->input('kwotaNetto');
+        $rodzaj = $request->input('rodzaj');
+        $idOsoba = $request->input('osoba');
+        $leadprojekt = leadproject::where('id_firma_partner',$idFirmaPartner)->where('id_project',$idProjekt)->first();
+        if($leadprojekt){
+            $projektEdit = project::where('id_projekt',$idProjekt)->update([
+               'nazwa' => $nazwa,
+                'opis'=> $opis,
+                'kwota_netto'=>$kwotaNetto,
+                'rodzaj'=>$rodzaj,
+                'id_osoba'=>$idOsoba,
+            ]);
+            return back();
+        }else{
+            return back();
+        }
     }
     public function addProjectDb($idFirma, Request $request){
         $leadController = new LeadController();
